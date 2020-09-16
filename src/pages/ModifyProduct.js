@@ -38,6 +38,7 @@ export const ModifyProduct = ({ products: { current }, updateProduct, ...props }
             });
     }, [current]);
 
+
     const {
         name,
         pricingTier,
@@ -48,6 +49,14 @@ export const ModifyProduct = ({ products: { current }, updateProduct, ...props }
         isEditable,
     } = formData;
 
+    const [enabled, setEnabled] = useState(false)
+    useEffect(() => {
+        if (name && pricingTier && priceRange && weight && productUrl) {
+            setEnabled(true)
+        }
+        else setEnabled(false)
+    }, [name, pricingTier, priceRange, weight, productUrl])
+
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -56,7 +65,7 @@ export const ModifyProduct = ({ products: { current }, updateProduct, ...props }
     }
 
     const onSubmit = (e) => {
-        if (name && pricingTier && priceRange && weight && availability && productUrl) {
+        if (name && pricingTier && priceRange && weight && productUrl) {
             e.preventDefault();
             setOpen(false)
             updateProduct(formData, id);
@@ -133,7 +142,7 @@ export const ModifyProduct = ({ products: { current }, updateProduct, ...props }
                     <FormControlLabel className='inputField' control={<Checkbox
                         checked={isEditable} name="isEditable" onChange={(e) => onChangeIsEditable(e)} />} label="Editable" />
 
-                    <Button className='submitBtn' onClick={(e) => onSubmit(e)} variant="contained">Submit</Button>
+                    <Button disabled={!enabled} className='submitBtn' onClick={(e) => onSubmit(e)} variant="contained">Submit</Button>
                 </FormGroup>
 
                 <Collapse style={{ marginTop: 40 }} in={open}>
