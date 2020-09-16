@@ -1,0 +1,30 @@
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.editTitle {
+  text-align: center;
+}
+
+.inputField {
+  margin: 30px 0 0 !important;
+}
+
+.inputGrid {
+  justify-content: space-around;
+}
+
+.inputGrid > div {
+  width: 48% !important;
+}
+
+.priceInput {
+  min-width: 30% !important;
+}
+
+.submitBtn {
+  width: 20%;
+  margin: 15px auto 0 !important;
+  background: #c5d6e8 !important;
+}
