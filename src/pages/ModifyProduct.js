@@ -62,7 +62,12 @@ export const ModifyProduct = ({ products: { current }, updateProduct, ...props }
             updateProduct(formData, id);
             props.history.push("/");
         }
-        else setOpen(true)
+        else {
+            setOpen(true)
+            setTimeout(() => {
+                setOpen(false)
+            }, 3000);
+        }
     };
 
     return (
@@ -131,7 +136,7 @@ export const ModifyProduct = ({ products: { current }, updateProduct, ...props }
                     <Button className='submitBtn' onClick={(e) => onSubmit(e)} variant="contained">Submit</Button>
                 </FormGroup>
 
-                <Collapse style={{marginTop: 40}} in={open}>
+                <Collapse style={{ marginTop: 40 }} in={open}>
                     <Alert severity="error">Please fill all the fields</Alert>
                 </Collapse>
             </Grid>
